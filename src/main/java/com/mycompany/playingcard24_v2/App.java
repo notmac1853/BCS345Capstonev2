@@ -17,24 +17,42 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.stage.Stage;
+import java.util.Random;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 
 //for importing ctrl+space
+
+// Info about what panes to use when:
+// https://docs.oracle.com/javafx/2/layout/builtin_layouts.htm
 
 /**
  * JavaFX App
  */
-public class App extends Application {
+public class App extends Application 	// <-- 
+{
     Group sp;
-    int counter = 0;
-    Label label1, label2;
+    HBox cardPane;		// <-- Change this from a StackPane to an HBox.
+    int counter = 0;		
+    Label label1, label2;	
     TextField tf1, tf2;
+
+	// Step1: Create an String array containing all 52 hyperlinks.
+	// String [] cardurls = new string[] {"https://imgur.com/UEsYyRp","https://imgur.com/npJmTXm", "https://imgur.com/4SrLlby"};
+
+	String[] cardurls = new String[] {
+"https://imgur.com/UEsYyRp.jpg", "https://imgur.com/npJmTXm.jpg", "https://imgur.com/4SrLlby.jpg", "https://imgur.com/3kAGaQB.jpg", "https://imgur.com/dn1XHYt.jpg", "https://imgur.com/lSXAhpj.jpg", "https://imgur.com/j9o233I.jpg", "https://imgur.com/ExqGRFl.jpg", "https://imgur.com/TXdwWlt.jpg", "https://imgur.com/W4Wf2Fb.jpg", "https://imgur.com/a3ZT2CL.jpg", "https://imgur.com/447bS09.jpg", "https://imgur.com/8u99tyx.jpg", "https://imgur.com/qWBoxbQ.jpg", "https://imgur.com/zs3p5EJ.jpg", "https://imgur.com/JJfugpe.jpg", "https://imgur.com/xjkDQN8.jpg", "https://imgur.com/Gs8F27c.jpg", "https://imgur.com/DI0A0ms.jpg", "https://imgur.com/1BZoI8Z.jpg", "https://imgur.com/YGxegCw.jpg", "https://imgur.com/zLBUPdn.jpg", "https://imgur.com/v9wIhhL.jpg", "https://imgur.com/SsVGy3M.jpg", "https://imgur.com/tOLr16X.jpg", "https://imgur.com/yYBQrSQ.jpg", "https://imgur.com/94Ys8cF.jpg", "https://imgur.com/XhJykKV.jpg", "https://imgur.com/IGiEAmv.jpg", "https://imgur.com/lxdq8ST.jpg", "https://imgur.com/hF61fbB.jpg", "https://imgur.com/uVeogQE.jpg", "https://imgur.com/WZRMPqX.jpg", "https://imgur.com/x6gE3wt.jpg", "https://imgur.com/UWVzOou.jpg", "https://imgur.com/6AtEzDs.jpg", "https://imgur.com/BDUmxan.jpg", "https://imgur.com/LlYl5Bg.jpg", "https://imgur.com/Rmfjs8C.jpg", "https://imgur.com/PhJua6z.jpg", "https://imgur.com/8BpwqHa.jpg", "https://imgur.com/vNG5cF6.jpg", "https://imgur.com/gnJ9eB4.jpg", "https://imgur.com/OUALf6o.jpg", "https://imgur.com/3TPAB3g.jpg", "https://imgur.com/KcQqfnN.jpg", "https://imgur.com/R3SWN6w.jpg", "https://imgur.com/4lehTuY.jpg", "https://imgur.com/HTDrwqx.jpg", "https://imgur.com/fddbq6u.jpg", "https://imgur.com/eLLjD2f.jpg", "https://imgur.com/APusIob.jpg" };
+	
+	// Next steps: Create an int array which represents the values of all the cards linked above.
+	//			   When you select a random url, also select the corresponding value of that card.
+	
+	// 			   Create an ArrayList<Integer> to hold the values of the four selected cards. 
+	//			   You'll use this for your expression.
 
     @Override
     public void start(Stage stage) {
-        sp = new Group();
-        var scene = new Scene(sp, 400, 300);       
-
+        sp = new Group();		// <-- 
+        var scene = new Scene(sp, 500, 300);       
         
         Button btn1 = new Button("Find a Solution");
         btn1.setLayoutX(10);
@@ -48,11 +66,10 @@ public class App extends Application {
         label2.setStyle("-fx-border-color: black;");
         sp.getChildren().add(label2);
         
-        
         Button btn2 = new Button("Refresh");
         btn2.setLayoutX(300);
         btn2.setLayoutY(5);
-        btn2.setOnAction( this::processBtn2 );      
+        btn2.setOnAction(this::processBtn2);      
         sp.getChildren().add(btn2);
         
         label1 = new Label("Enter an expression: ");
@@ -67,117 +84,92 @@ public class App extends Application {
         tf2.setLayoutY(270);
         sp.getChildren().add(tf2);
         
+      
         Button btn3 = new Button("Verify");
         btn3.setLayoutX(300);
         btn3.setLayoutY(270);
+      	btn3.setOnAction(this::processBtn3);
         sp.getChildren().add(btn3);
-
+        
+      
+      
         
         stage.setScene(scene);
         stage.setTitle("PlayingCard24");
         stage.show();
+      
+      	cardPane = new HBox();			// <-- Initialize our card pane
+	cardPane.setLayoutX(20);			// <-- setup its layout (position and size)
+        cardPane.setLayoutY(75);
+      	sp.getChildren().add(cardPane);	
+        
+        Random rgen = new Random();
+	cardPane.getChildren().clear();
+        
+        
+        	for (int i = 0 ; i < 4 ; i++)
+                {
+      		int randomIndex = rgen.nextInt(52);
+      		Image img = new Image( cardurls[randomIndex] , 100, 100, false, false);		// <--- We create our card image here.
+        	ImageView imgView = new ImageView(img);		// <--- We create a JavaFX control for displaying the card image.
+      		cardPane.getChildren().add(imgView);	// <-- Now we want to add that javafx control onto our window
+		}
         
     }
+     
+
+
+
+
+    public void processBtn1(ActionEvent arg0){
+        
+        Image img = new Image("10_of_clubs.png", 100, 100, false, false);
+        ImageView imgView = new ImageView(img);
+        StackPane pane = new StackPane(imgView);
+        pane.setLayoutX(250);
+        pane.setLayoutY(250);
+        sp.getChildren().add(pane);
+        
+        counter++;
+        String numString = Integer.toString(counter);
+        label1.setText(numString);
+    }
     
-    public static void main(String[] args) {
+    public void processBtn2(ActionEvent arg1)
+    {
+      	// Create our random number generator and clear our card pane.
+      	Random rgen = new Random();
+		cardPane.getChildren().clear();
+      
+      	// The following selects a random card and adds it to our window.
+      	// We want this process to repeat four times, so that four cards get displayed on our window.
+      
+      	for (int i = 0 ; i < 4 ; i++)
+        {
+      		int randomIndex = rgen.nextInt(52);
+      		Image img = new Image( cardurls[randomIndex] , 100, 100, false, false);		// <--- We create our card image here.
+        	ImageView imgView = new ImageView(img);		// <--- We create a JavaFX control for displaying the card image.
+      		cardPane.getChildren().add(imgView);	// <-- Now we want to add that javafx control onto our window.
+		}
+             
+        counter++;
+        String numString = Integer.toString(counter);
+        label1.setText(numString);
+           
+    }
+
+public void processBtn3(ActionEvent arg2)
+{
+  
+  System.out.println("HI");
+  
+  
+  
+}
+
+
+ public static void main(String[] args) {
         launch();
     }
     
-    public void processBtn1(ActionEvent arg0){
-        Image img = new Image("https://imgur.com/UEsYyRp.jpg", 100, 100, false, false);
-        ImageView imgView = new ImageView(img);
-        StackPane pane = new StackPane(imgView);
-        pane.setLayoutX(250);
-        pane.setLayoutY(250);
-        sp.getChildren().add(pane);
-        
-        counter++;
-        String numString = Integer.toString(counter);
-        label1.setText(numString);
-    }
-    
-    public void processBtn2(ActionEvent arg1){
-        Image img = new Image("https://imgur.com/UEsYyRp.jpg", 100, 100, false, false);
-        ImageView imgView = new ImageView(img);
-        StackPane pane = new StackPane(imgView);
-        pane.setLayoutX(250);
-        pane.setLayoutY(250);
-        sp.getChildren().add(pane);
-        
-        counter++;
-        String numString = Integer.toString(counter);
-        label1.setText(numString);
-        
-    }
-    
-    /*
-    10C https://imgur.com/UEsYyRp
-    10D https://imgur.com/npJmTXm
-    10H https://imgur.com/4SrLlby
-    10S https://imgur.com/3kAGaQB
-    
-    2C https://imgur.com/dn1XHYt
-    2D https://imgur.com/lSXAhpj
-    2H https://imgur.com/j9o233I
-    2S https://imgur.com/ExqGRFl
-    
-    3C https://imgur.com/TXdwWlt
-    3D https://imgur.com/W4Wf2Fb
-    3H https://imgur.com/a3ZT2CL
-    3S https://imgur.com/447bS09
-    
-    4C https://imgur.com/8u99tyx
-    4D https://imgur.com/qWBoxbQ
-    4H https://imgur.com/zs3p5EJ
-    4S https://imgur.com/JJfugpe
-    
-    5C https://imgur.com/xjkDQN8
-    5D https://imgur.com/Gs8F27c
-    5H https://imgur.com/DI0A0ms
-    5S https://imgur.com/1BZoI8Z
-    
-    6C https://imgur.com/YGxegCw
-    6D https://imgur.com/zLBUPdn
-    6H https://imgur.com/v9wIhhL
-    6S https://imgur.com/SsVGy3M
-    
-    7C https://imgur.com/tOLr16X
-    7D https://imgur.com/yYBQrSQ
-    7H https://imgur.com/94Ys8cF
-    7S https://imgur.com/XhJykKV
-    
-    8C https://imgur.com/IGiEAmv
-    8D https://imgur.com/lxdq8ST
-    8H https://imgur.com/hF61fbB
-    8S https://imgur.com/uVeogQE
-    
-    9C https://imgur.com/WZRMPqX
-    9D https://imgur.com/x6gE3wt
-    9H https://imgur.com/UWVzOou
-    9S https://imgur.com/6AtEzDs
-    
-    1C https://imgur.com/BDUmxan
-    1D https://imgur.com/LlYl5Bg
-    1H https://imgur.com/Rmfjs8C
-    1S https://imgur.com/PhJua6z
-    
-    JC https://imgur.com/8BpwqHa
-    JD https://imgur.com/vNG5cF6
-    JH https://imgur.com/gnJ9eB4
-    JS https://imgur.com/OUALf6o
-    
-    KC https://imgur.com/3TPAB3g
-    KD https://imgur.com/KcQqfnN
-    KH https://imgur.com/R3SWN6w
-    KS https://imgur.com/4lehTuY
-    
-    QC https://imgur.com/HTDrwqx
-    QD https://imgur.com/fddbq6u
-    QH https://imgur.com/eLLjD2f
-    QS https://imgur.com/APusIob
-    */
-    
-    
-    
-
 }
