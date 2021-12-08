@@ -37,22 +37,11 @@ public class App extends Application 	// <--
     Label label1, label2;	
     TextField tf1, tf2;
 
-	// Step1: Create an String array containing all 52 hyperlinks.
-	// String [] cardurls = new string[] {"https://imgur.com/UEsYyRp","https://imgur.com/npJmTXm", "https://imgur.com/4SrLlby"};
-
-	String[] cardurls = new String[] {
-"https://imgur.com/UEsYyRp.jpg", "https://imgur.com/npJmTXm.jpg", "https://imgur.com/4SrLlby.jpg", "https://imgur.com/3kAGaQB.jpg", "https://imgur.com/dn1XHYt.jpg", "https://imgur.com/lSXAhpj.jpg", "https://imgur.com/j9o233I.jpg", "https://imgur.com/ExqGRFl.jpg", "https://imgur.com/TXdwWlt.jpg", "https://imgur.com/W4Wf2Fb.jpg", "https://imgur.com/a3ZT2CL.jpg", "https://imgur.com/447bS09.jpg", "https://imgur.com/8u99tyx.jpg", "https://imgur.com/qWBoxbQ.jpg", "https://imgur.com/zs3p5EJ.jpg", "https://imgur.com/JJfugpe.jpg", "https://imgur.com/xjkDQN8.jpg", "https://imgur.com/Gs8F27c.jpg", "https://imgur.com/DI0A0ms.jpg", "https://imgur.com/1BZoI8Z.jpg", "https://imgur.com/YGxegCw.jpg", "https://imgur.com/zLBUPdn.jpg", "https://imgur.com/v9wIhhL.jpg", "https://imgur.com/SsVGy3M.jpg", "https://imgur.com/tOLr16X.jpg", "https://imgur.com/yYBQrSQ.jpg", "https://imgur.com/94Ys8cF.jpg", "https://imgur.com/XhJykKV.jpg", "https://imgur.com/IGiEAmv.jpg", "https://imgur.com/lxdq8ST.jpg", "https://imgur.com/hF61fbB.jpg", "https://imgur.com/uVeogQE.jpg", "https://imgur.com/WZRMPqX.jpg", "https://imgur.com/x6gE3wt.jpg", "https://imgur.com/UWVzOou.jpg", "https://imgur.com/6AtEzDs.jpg", "https://imgur.com/BDUmxan.jpg", "https://imgur.com/LlYl5Bg.jpg", "https://imgur.com/Rmfjs8C.jpg", "https://imgur.com/PhJua6z.jpg", "https://imgur.com/8BpwqHa.jpg", "https://imgur.com/vNG5cF6.jpg", "https://imgur.com/gnJ9eB4.jpg", "https://imgur.com/OUALf6o.jpg", "https://imgur.com/3TPAB3g.jpg", "https://imgur.com/KcQqfnN.jpg", "https://imgur.com/R3SWN6w.jpg", "https://imgur.com/4lehTuY.jpg", "https://imgur.com/HTDrwqx.jpg", "https://imgur.com/fddbq6u.jpg", "https://imgur.com/eLLjD2f.jpg", "https://imgur.com/APusIob.jpg" };
-	
-	// Next steps: Create an int array which represents the values of all the cards linked above.
-	//			   When you select a random url, also select the corresponding value of that card.
-	
-	// 			   Create an ArrayList<Integer> to hold the values of the four selected cards. 
-	//			   You'll use this for your expression.
-
     @Override
     public void start(Stage stage) {
         sp = new Group();		// <-- 
-        var scene = new Scene(sp, 500, 300);       
+        var scene = new Scene(sp, 500, 300, Color.LIGHTGREEN);   
+        
         
         Button btn1 = new Button("Find a Solution");
         btn1.setLayoutX(10);
