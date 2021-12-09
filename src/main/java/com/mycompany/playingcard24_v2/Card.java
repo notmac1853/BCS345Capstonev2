@@ -47,7 +47,8 @@ public class Card {
     
     //Get the description of a card as a string
     public String cardDesc() {
-    String s = ranks[this.rank] + " of " + suits[this.suit];
+    String s = ranks[this.rank] + " of " + suits[this.suit] + " with the image " + image;
     return s;
     }
 }
+

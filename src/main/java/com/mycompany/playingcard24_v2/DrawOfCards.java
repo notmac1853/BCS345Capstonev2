@@ -14,8 +14,9 @@ import java.util.Collections;
  */
 public class DrawOfCards {
     private Card[] cards;
+    private Card[] randDeck;
     
-    String[] cardurls = new String[] {
+    private String[] cardurls = new String[] {
      "https://imgur.com/BDUmxan", //1C
      "https://imgur.com/LlYl5Bg", //1D
      "https://imgur.com/Rmfjs8C", //1H
@@ -83,45 +84,35 @@ public class DrawOfCards {
     
     };
     
-    public void build(int numberOfCards){
-        Card[] deck = new Card[numberOfCards];
+    public DrawOfCards(int numberOfCards){
+        this.cards = new Card[52];
         int index = 0;
-        while (index <= numberOfCards){
             for (int suit = 0; suit <= 3; suit++){
                 for (int rank = 1; rank <=13; rank++){
-                    deck[index] = new Card(rank, suit, cardurls[index]);
+                    this.cards[index] = new Card(rank, suit, cardurls[index]);
                     index++;
 
                 }
             }
-        }
-    }
-    
-    public void buildRandom(int numberOfCards){
-        Card[] deck = new Card[numberOfCards];
-        int index = 0;
-        while (index <= numberOfCards){
-            for (int suit = 0; suit <= 3; suit++){
-                for (int rank = 1; rank <=13; rank++){
-                    deck[index] = new Card(rank, suit, cardurls[index]);
-                    index++;
-
-                }
-            }
-        }
         
-        Card[] randDeck = new Card[numberOfCards];
+        this.randDeck = new Card[numberOfCards];
                 
         ArrayList numbers = new ArrayList();
-        for(int i = 0; i < numberOfCards; i++){
+        for(int i = 0; i < 52; i++){
             numbers.add(i+1);
         }
         
         Collections.shuffle(numbers);
         
         for (int j = 0; j < numberOfCards; j++){
-            int i = (Integer)numbers.get(j);
-            randDeck[j] = deck[i];
+            int i = (Integer)numbers.get(j)-1;
+            randDeck[j] = this.cards[i];
+        }
+    }
+    
+    public void printDraw(){
+        for (int i = 0; i < this.randDeck.length; i++){
+            System.out.println(this.randDeck[i].cardDesc());
         }
     }
     
