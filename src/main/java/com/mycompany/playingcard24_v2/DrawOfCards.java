@@ -17,70 +17,70 @@ public class DrawOfCards {
     private Card[] randDeck;
     
     private String[] cardurls = new String[] {
-     "https://imgur.com/BDUmxan", //1C
-     "https://imgur.com/LlYl5Bg", //1D
-     "https://imgur.com/Rmfjs8C", //1H
-     "https://imgur.com/PhJua6z", //1S
+     "https://imgur.com/BDUmxan.png", //1C
+     "https://imgur.com/LlYl5Bg.png", //1D
+     "https://imgur.com/Rmfjs8C.png", //1H
+     "https://imgur.com/PhJua6z.png", //1S
    
-     "https://imgur.com/dn1XHYt", //2C
-     "https://imgur.com/lSXAhpj", //2D
-     "https://imgur.com/j9o233I", //2H
-     "https://imgur.com/ExqGRFl", //2S
+     "https://imgur.com/dn1XHYt.png", //2C
+     "https://imgur.com/lSXAhpj.png", //2D
+     "https://imgur.com/j9o233I.png", //2H
+     "https://imgur.com/ExqGRFl.png", //2S
     
-     "https://imgur.com/TXdwWlt", //3C
-     "https://imgur.com/W4Wf2Fb", //3D
-     "https://imgur.com/a3ZT2CL", //3H
-     "https://imgur.com/447bS09", //3S
+     "https://imgur.com/TXdwWlt.png", //3C
+     "https://imgur.com/W4Wf2Fb.png", //3D
+     "https://imgur.com/a3ZT2CL.png", //3H
+     "https://imgur.com/447bS09.png", //3S
     
-     "https://imgur.com/8u99tyx", //4C
-     "https://imgur.com/qWBoxbQ", //4D
-     "https://imgur.com/zs3p5EJ", //4H
-     "https://imgur.com/JJfugpe", //4S
+     "https://imgur.com/8u99tyx.png", //4C
+     "https://imgur.com/qWBoxbQ.png", //4D
+     "https://imgur.com/zs3p5EJ.png", //4H
+     "https://imgur.com/JJfugpe.png", //4S
     
-     "https://imgur.com/xjkDQN8", //5C
-     "https://imgur.com/Gs8F27c", //5D
-     "https://imgur.com/DI0A0ms", //5H
-     "https://imgur.com/1BZoI8Z", //5S
+     "https://imgur.com/xjkDQN8.png", //5C
+     "https://imgur.com/Gs8F27c.png", //5D
+     "https://imgur.com/DI0A0ms.png", //5H
+     "https://imgur.com/1BZoI8Z.png", //5S
     
-     "https://imgur.com/YGxegCw", //6C
-     "https://imgur.com/zLBUPdn", //6D
-     "https://imgur.com/v9wIhhL", //6H
-     "https://imgur.com/SsVGy3M", //6S
+     "https://imgur.com/YGxegCw.png", //6C
+     "https://imgur.com/zLBUPdn.png", //6D
+     "https://imgur.com/v9wIhhL.png", //6H
+     "https://imgur.com/SsVGy3M.png", //6S
     
-     "https://imgur.com/tOLr16X", //7C
-     "https://imgur.com/yYBQrSQ", //7D
-     "https://imgur.com/94Ys8cF", //7H
-     "https://imgur.com/XhJykKV", //7S
+     "https://imgur.com/tOLr16X.png", //7C
+     "https://imgur.com/yYBQrSQ.png", //7D
+     "https://imgur.com/94Ys8cF.png", //7H
+     "https://imgur.com/XhJykKV.png", //7S
     
-     "https://imgur.com/IGiEAmv", //8C
-     "https://imgur.com/lxdq8ST", //8D
-     "https://imgur.com/hF61fbB", //8H
-     "https://imgur.com/uVeogQE", //8S
+     "https://imgur.com/IGiEAmv.png", //8C
+     "https://imgur.com/lxdq8ST.png", //8D
+     "https://imgur.com/hF61fbB.png", //8H
+     "https://imgur.com/uVeogQE.png", //8S
     
-     "https://imgur.com/WZRMPqX", //9C
-     "https://imgur.com/x6gE3wt", //9D
-     "https://imgur.com/UWVzOou", //9H
-     "https://imgur.com/6AtEzDs", //9S
+     "https://imgur.com/WZRMPqX.png", //9C
+     "https://imgur.com/x6gE3wt.png", //9D
+     "https://imgur.com/UWVzOou.png", //9H
+     "https://imgur.com/6AtEzDs.png", //9S
     
-     "https://imgur.com/UEsYyRp", //10C
-     "https://imgur.com/npJmTXm", //10D
-     "https://imgur.com/4SrLlby", //10H
-     "https://imgur.com/3kAGaQB", //10S
+     "https://imgur.com/UEsYyRp.png", //10C
+     "https://imgur.com/npJmTXm.png", //10D
+     "https://imgur.com/4SrLlby.png", //10H
+     "https://imgur.com/3kAGaQB.png", //10S
     
-     "https://imgur.com/8BpwqHa", //JC
-     "https://imgur.com/vNG5cF6", //JD
-     "https://imgur.com/gnJ9eB4", //JH
-     "https://imgur.com/OUALf6o", //JS
+     "https://imgur.com/8BpwqHa.png", //JC
+     "https://imgur.com/vNG5cF6.png", //JD
+     "https://imgur.com/gnJ9eB4.png", //JH
+     "https://imgur.com/OUALf6o.png", //JS
     
-     "https://imgur.com/HTDrwqx", //QC
-     "https://imgur.com/fddbq6u", //QD
-     "https://imgur.com/eLLjD2f", //QH
-     "https://imgur.com/APusIob", //QS
+     "https://imgur.com/HTDrwqx.png", //QC
+     "https://imgur.com/fddbq6u.png", //QD
+     "https://imgur.com/eLLjD2f.png", //QH
+     "https://imgur.com/APusIob.png", //QS
     
-     "https://imgur.com/3TPAB3g", //KC
-     "https://imgur.com/KcQqfnN", //KD
-     "https://imgur.com/R3SWN6w", //KH
-     "https://imgur.com/4lehTuY" //KS
+     "https://imgur.com/3TPAB3g.png", //KC
+     "https://imgur.com/KcQqfnN.png", //KD
+     "https://imgur.com/R3SWN6w.png", //KH
+     "https://imgur.com/4lehTuY.png" //KS
     
     };
     
@@ -108,6 +108,16 @@ public class DrawOfCards {
             int i = (Integer)numbers.get(j)-1;
             randDeck[j] = this.cards[i];
         }
+    }
+    
+    public int getCardValue(int n){
+        int value = randDeck[n].getRank();
+        return value;
+    }
+    
+    public String getCardImage(int n){
+        String image = randDeck[n].getImage();
+        return image;
     }
     
     public void printDraw(){

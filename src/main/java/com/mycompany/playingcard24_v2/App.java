@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import java.util.Random;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import java.io.*;
 
 //for importing ctrl+space
 
@@ -31,16 +32,16 @@ import javafx.scene.layout.HBox;
  */
 public class App extends Application 	// <-- 
 {
-    Group sp;
-    HBox cardPane;		// <-- Change this from a StackPane to an HBox.
-    int counter = 0;		
-    Label label1, label2;	
+    Group sp;		
+    Label label1, label2, label3;	
     TextField tf1, tf2;
+    Image card1, card2, card3, card4;
+    Rectangle r1, r2, r3, r4;
+    int val1, val2, val3, val4;
 
     @Override
     public void start(Stage stage) {
-        sp = new Group();		// <-- 
-        var scene = new Scene(sp, 500, 300, Color.LIGHTGREEN);   
+        sp = new Group();
         
         
         Button btn1 = new Button("Find a Solution");
@@ -80,29 +81,97 @@ public class App extends Application 	// <--
       	btn3.setOnAction(this::processBtn3);
         sp.getChildren().add(btn3);
         
-      
-      
+        DrawOfCards deck1 = new DrawOfCards(4);
         
+        card1 = new Image(deck1.getCardImage(0));
+        card2 = new Image(deck1.getCardImage(1));
+        card3 = new Image(deck1.getCardImage(2));
+        card4 = new Image(deck1.getCardImage(3));
+        
+        
+        r1 = new Rectangle();
+        r1.setX(50);
+        r1.setY(100);
+        r1.setHeight(100);
+        r1.setWidth(75);
+        r1.setFill(Color.WHITE);
+        r1.setStroke(Color.BLACK);
+        sp.getChildren().add(r1);
+        
+               
+        ImageView cardImage1 = new ImageView(card1);
+        cardImage1.setX(50);
+        cardImage1.setY(100);
+        cardImage1.setFitHeight(100);
+        cardImage1.setFitWidth(75);
+        sp.getChildren().add(cardImage1);
+        
+        r2 = new Rectangle();
+        r2.setX(150);
+        r2.setY(100);
+        r2.setHeight(100);
+        r2.setWidth(75);
+        r2.setFill(Color.WHITE);
+        r2.setStroke(Color.BLACK);
+        sp.getChildren().add(r2);
+        
+        ImageView cardImage2 = new ImageView(card2);
+        cardImage2.setX(150);
+        cardImage2.setY(100);
+        cardImage2.setFitHeight(100);
+        cardImage2.setFitWidth(75);
+        sp.getChildren().add(cardImage2);
+        
+        r3 = new Rectangle();
+        r3.setX(250);
+        r3.setY(100);
+        r3.setHeight(100);
+        r3.setWidth(75);
+        r3.setFill(Color.WHITE);
+        r3.setStroke(Color.BLACK);
+        sp.getChildren().add(r3);
+        
+        ImageView cardImage3 = new ImageView(card3);
+        cardImage3.setX(250);
+        cardImage3.setY(100);
+        cardImage3.setFitHeight(100);
+        cardImage3.setFitWidth(75);
+        sp.getChildren().add(cardImage3);
+        
+        r4 = new Rectangle();
+        r4.setX(350);
+        r4.setY(100);
+        r4.setHeight(100);
+        r4.setWidth(75);
+        r4.setFill(Color.WHITE);
+        r4.setStroke(Color.BLACK);
+        sp.getChildren().add(r4);
+        
+        ImageView cardImage4 = new ImageView(card4);
+        cardImage4.setX(350);
+        cardImage4.setY(100);
+        cardImage4.setFitHeight(100);
+        cardImage4.setFitWidth(75);
+        sp.getChildren().add(cardImage4);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        int val1 = deck1.getCardValue(0);
+        int val2 = deck1.getCardValue(1);
+        int val3 = deck1.getCardValue(2);
+        int val4 = deck1.getCardValue(3);
+        
+        var scene = new Scene(sp, 500, 300, Color.LIGHTGREEN);   
         stage.setScene(scene);
         stage.setTitle("PlayingCard24");
         stage.show();
-      
-      	cardPane = new HBox();			// <-- Initialize our card pane
-	cardPane.setLayoutX(20);			// <-- setup its layout (position and size)
-        cardPane.setLayoutY(75);
-      	sp.getChildren().add(cardPane);	
-        
-        Random rgen = new Random();
-	cardPane.getChildren().clear();
-        
-        
-        	for (int i = 0 ; i < 4 ; i++)
-                {
-      		int randomIndex = rgen.nextInt(52);
-      		Image img = new Image( cardurls[randomIndex] , 100, 100, false, false);		// <--- We create our card image here.
-        	ImageView imgView = new ImageView(img);		// <--- We create a JavaFX control for displaying the card image.
-      		cardPane.getChildren().add(imgView);	// <-- Now we want to add that javafx control onto our window
-		}
         
     }
      
@@ -111,7 +180,7 @@ public class App extends Application 	// <--
 
 
     public void processBtn1(ActionEvent arg0){
-        
+        /*
         Image img = new Image("10_of_clubs.png", 100, 100, false, false);
         ImageView imgView = new ImageView(img);
         StackPane pane = new StackPane(imgView);
@@ -122,29 +191,83 @@ public class App extends Application 	// <--
         counter++;
         String numString = Integer.toString(counter);
         label1.setText(numString);
+*/
     }
     
     public void processBtn2(ActionEvent arg1)
     {
-      	// Create our random number generator and clear our card pane.
-      	Random rgen = new Random();
-		cardPane.getChildren().clear();
-      
-      	// The following selects a random card and adds it to our window.
-      	// We want this process to repeat four times, so that four cards get displayed on our window.
-      
-      	for (int i = 0 ; i < 4 ; i++)
-        {
-      		int randomIndex = rgen.nextInt(52);
-      		Image img = new Image( cardurls[randomIndex] , 100, 100, false, false);		// <--- We create our card image here.
-        	ImageView imgView = new ImageView(img);		// <--- We create a JavaFX control for displaying the card image.
-      		cardPane.getChildren().add(imgView);	// <-- Now we want to add that javafx control onto our window.
-		}
-             
-        counter++;
-        String numString = Integer.toString(counter);
-        label1.setText(numString);
-           
+      	DrawOfCards deck1 = new DrawOfCards(4);
+        
+        card1 = new Image(deck1.getCardImage(0));
+        card2 = new Image(deck1.getCardImage(1));
+        card3 = new Image(deck1.getCardImage(2));
+        card4 = new Image(deck1.getCardImage(3));
+        
+        
+        r1 = new Rectangle();
+        r1.setX(50);
+        r1.setY(100);
+        r1.setHeight(100);
+        r1.setWidth(75);
+        r1.setFill(Color.WHITE);
+        r1.setStroke(Color.BLACK);
+        sp.getChildren().add(r1);
+        
+               
+        ImageView cardImage1 = new ImageView(card1);
+        cardImage1.setX(50);
+        cardImage1.setY(100);
+        cardImage1.setFitHeight(100);
+        cardImage1.setFitWidth(75);
+        sp.getChildren().add(cardImage1);
+        
+        r2 = new Rectangle();
+        r2.setX(150);
+        r2.setY(100);
+        r2.setHeight(100);
+        r2.setWidth(75);
+        r2.setFill(Color.WHITE);
+        r2.setStroke(Color.BLACK);
+        sp.getChildren().add(r2);
+        
+        ImageView cardImage2 = new ImageView(card2);
+        cardImage2.setX(150);
+        cardImage2.setY(100);
+        cardImage2.setFitHeight(100);
+        cardImage2.setFitWidth(75);
+        sp.getChildren().add(cardImage2);
+        
+        r3 = new Rectangle();
+        r3.setX(250);
+        r3.setY(100);
+        r3.setHeight(100);
+        r3.setWidth(75);
+        r3.setFill(Color.WHITE);
+        r3.setStroke(Color.BLACK);
+        sp.getChildren().add(r3);
+        
+        ImageView cardImage3 = new ImageView(card3);
+        cardImage3.setX(250);
+        cardImage3.setY(100);
+        cardImage3.setFitHeight(100);
+        cardImage3.setFitWidth(75);
+        sp.getChildren().add(cardImage3);
+        
+        r4 = new Rectangle();
+        r4.setX(350);
+        r4.setY(100);
+        r4.setHeight(100);
+        r4.setWidth(75);
+        r4.setFill(Color.WHITE);
+        r4.setStroke(Color.BLACK);
+        sp.getChildren().add(r4);
+        
+        ImageView cardImage4 = new ImageView(card4);
+        cardImage4.setX(350);
+        cardImage4.setY(100);
+        cardImage4.setFitHeight(100);
+        cardImage4.setFitWidth(75);
+        sp.getChildren().add(cardImage4);
     }
 
 public void processBtn3(ActionEvent arg2)

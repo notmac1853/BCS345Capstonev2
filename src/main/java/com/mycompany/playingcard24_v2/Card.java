@@ -42,7 +42,11 @@ public class Card {
     }
     
     public int getSuit() {
-    return this.suit;
+        return this.suit;
+    }
+    
+    public String getImage(){
+        return this.image;
     }
     
     //Get the description of a card as a string
