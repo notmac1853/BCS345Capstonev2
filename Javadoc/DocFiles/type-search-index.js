@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"com.mycompany.playingcard24_v2","l":"App"},{"p":"com.mycompany.playingcard24_v2","l":"Card"},{"p":"com.mycompany.playingcard24_v2","l":"DrawOfCards"}];updateSearchResults();

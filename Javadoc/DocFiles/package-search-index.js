@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"com.mycompany.playingcard24_v2","l":"com.mycompany.playingcard24_v2"}];updateSearchResults();
