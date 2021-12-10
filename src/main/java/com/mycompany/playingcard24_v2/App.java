@@ -1,7 +1,5 @@
 package com.mycompany.playingcard24_v2;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
@@ -11,51 +9,75 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Polygon;
 import javafx.stage.Stage;
-import java.util.Random;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import java.io.*;
 import java.util.Stack;
+import java.util.regex.Pattern;
 
+/*
+*    <h1>Playing Card 24</h1>
+*    This is a simple application that displays four random card objects from a standard deck on a GUI. The cards are unique and have a rank, suit, and image url value. Using the cards displayed
+*    on the GUI, and some approved special characters, the user must create a mathematical expression that evaluates to 24. There is also a button that allows the user to generate a new set of cards
+*    and values if they would like to
+*
+*    @author Marco Chavez.
+*
+*/
 
 public class App extends Application
 {
-    Group sp;		
-    Label label1, label2, label3, validLabel;	
+    //Group where all elements of the GUI will be added
+    Group sp;
+    //Labels to display text
+    Label label1, label2, label3, validLabel;
+    //Text field to allow user input
     TextField tf1, tf2;
+    //Images of the cards
     Image card1, card2, card3, card4;
+    //Creating shapes to make the cards white and the edges black
     Rectangle r1, r2, r3, r4;
+    //integers to store the values of the cards
     int val1, val2, val3, val4;
     
+    //A method to validate that the user is only using numbers from the given card values; returns a boolean
     public boolean validInput(String userInput, int num1, int num2, int num3, int num4){
+        //initialize boolean
         boolean valid = true;
+        
+        //parse the values to strings
+        String num1s = Integer.toString(num1);
+        String num2s = Integer.toString(num2);
+        String num3s = Integer.toString(num3);
+        String num4s = Integer.toString(num4);
+        
+        //use regex to create a pattern that limits allowed characters to numbers passed from card values as well as allowed symbols
+        Pattern pattern = Pattern.compile("[" + num1s + num2s + num3s + num4s+ "\\)\\(\\*\\/\\+\\-]+");
 
-        char cnum1 = (char)num1;
-        char cnum2 = (char)num2;
-        char cnum3 = (char)num3;
-        char cnum4 = (char)num4;
-
-        for (int i = 0; i < userInput.length(); i++){
-            char c = userInput.charAt(i);
-
-            if ((c != ')') || (c != '(') || (c != '+') || (c != '-') || (c != '*') || (c!= '/') || (c != cnum1) || (c != cnum2)){
-                valid = false;
-            }
-            else{
-                valid = true;
-            }
+        //if the user input does not match the pattern, set valid to false
+        if (!pattern.matcher(userInput).matches()){
+            valid = false;
+        
         }
-
+        //if it does, set valid to true
+        else {
+            valid = true;
+        }
+        
+        //return valid
         return valid;
-
     }
+        
+
+        
+
+        
+
     
+    //Method to evaluate a mathematical expression
+    //Credit to https://www.geeksforgeeks.org/expression-evaluation/
     public static int evaluate(String expression)
     {
         char[] tokens = expression.toCharArray();
@@ -198,64 +220,73 @@ public class App extends Application
     public void start(Stage stage) {
         sp = new Group();
        
-        Label validLabel = new Label("Is your expression valid?");
-        validLabel.setLayoutX(250);
-        validLabel.setLayoutY(250);
-        sp.getChildren().add(validLabel);
-        
+        //A button to generate a solution to the game (Work in Progress)
         Button btn1 = new Button("Find a Solution");
         btn1.setLayoutX(10);
         btn1.setLayoutY(5);
         btn1.setOnAction( this::processBtn1 );
         sp.getChildren().add(btn1);
         
+        //A placeholder for the solution text field
         label2 = new Label("    Solution    ");
+        //setting the x and y coordinates to display on the gui
         label2.setLayoutX(200);
         label2.setLayoutY(5);
+        //set the border of the label to black ot make it a black box
         label2.setStyle("-fx-border-color: black;");
+        //adding the node to the group
         sp.getChildren().add(label2);
         
+        //A button that allows the user to refresh the four cards thye have displayed
         Button btn2 = new Button("Refresh");
         btn2.setLayoutX(300);
         btn2.setLayoutY(5);
+        //tie the button to a mouse action that activates when the button is pressed
         btn2.setOnAction(this::processBtn2);      
         sp.getChildren().add(btn2);
         
+        //label that tells the user where to enter their expression
         label1 = new Label("Enter an expression: ");
         label1.setLayoutX(10);
         label1.setLayoutY(270);
         sp.getChildren().add(label1);      
         
+        //text field where the user enters their expression solution
         tf2 = new TextField("");
         tf2.setLayoutX(130);
         tf2.setLayoutY(270);
         sp.getChildren().add(tf2);
         
-      
+        //button that will verify that the solution enterd by the user is valid and evaluates to 24
         Button btn3 = new Button("Verify");
         btn3.setLayoutX(300);
         btn3.setLayoutY(270);
       	btn3.setOnAction(this::processBtn3);
         sp.getChildren().add(btn3);
         
+        //create a drawofcrads object with 4 cards
         DrawOfCards deck1 = new DrawOfCards(4);
         
+        //get the image urls of 4 cards
         card1 = new Image(deck1.getCardImage(0));
         card2 = new Image(deck1.getCardImage(1));
         card3 = new Image(deck1.getCardImage(2));
         card4 = new Image(deck1.getCardImage(3));
         
-        
+        //create rectangles that will serve as the backdrop and border of the cards         
         r1 = new Rectangle();
         r1.setX(50);
         r1.setY(100);
+        //set the size of the rectangle
         r1.setHeight(100);
         r1.setWidth(75);
+        //set the fill color of the rectangle
         r1.setFill(Color.WHITE);
+        //set the border color of the rectangle
         r1.setStroke(Color.BLACK);
         sp.getChildren().add(r1);
         
-               
+        //create imageview objects that will be needed to actually display the images of the cards      
         ImageView cardImage1 = new ImageView(card1);
         cardImage1.setX(50);
         cardImage1.setY(100);
@@ -311,11 +342,20 @@ public class App extends Application
         cardImage4.setFitWidth(75);
         sp.getChildren().add(cardImage4);
 
+        //getting the rank values of the cards displayed
         val1 = deck1.getCardValue(0);
         val2 = deck1.getCardValue(1);
         val3 = deck1.getCardValue(2);
         val4 = deck1.getCardValue(3);
         
+        //display the values of the cards; useful for debugging. Will also display whether or not the user's solution is correct
+        validLabel = new Label(" Card 1 is: " + val1 + " Card 2 is: " + val2 + " Card 3: " + val3 + " Card 4: " + val4);
+        validLabel.setLayoutX(10);
+        validLabel.setLayoutY(250);
+        sp.getChildren().add(validLabel);
+        
+        
+        //set the scene and the background color, as well as the title of the window
         var scene = new Scene(sp, 500, 300, Color.LIGHTGREEN);   
         stage.setScene(scene);
         stage.setTitle("PlayingCard24");
@@ -323,14 +363,12 @@ public class App extends Application
         
     }
      
-
-
-
-
+    //the button action event that will generate a solution for the game
     public void processBtn1(ActionEvent arg0){
-        
+         //Work in progress
     }
     
+    //this button action will reresh and draw four new cards to be displaye to the user, as well as updating the values of each cardValue
     public void processBtn2(ActionEvent arg1)
     {
       	DrawOfCards deck1 = new DrawOfCards(4);
@@ -412,18 +450,32 @@ public class App extends Application
         val4 = deck1.getCardValue(3);
     }
 
+    //this action event will call the user validation method on the user's input and determine if they expression they entered evaluates to 24. If hte input is invalid, an invalid input message is shown
     public void processBtn3(ActionEvent arg2){
-
+        //trim the user's input into the text field of whitespace
        String fieldInput = tf2.getText().trim();
-
+            
+            //If the input validation method returns false, then display a message letting the user knows the input is invalid
             if (validInput(fieldInput, val1, val2, val3, val4) == false){
                 validLabel.setText("Input is INVALID");
             }
+            //otherwise, let the user know if the solution they entered for the game is correct
             else{
+                //evaluate the expression and store the result in an int variable
                 int solution = evaluate(fieldInput);
-                String numString = Integer.toString(solution);
-                validLabel.setText(numString);
+                
+                //If the solution adds up to 24, the user is informed that it is correct
+                if (solution == 24){
+                    validLabel.setText("Correct answer! :)");
+                }
+                //If the solution does not addup to 24, then the user is informed of their incorrect acswer, and what it evaluates to
+                else{
+                    String numString = Integer.toString(solution);
+                    validLabel.setText("Incorrect :( Your expression evaluates to: " + numString);
+                }
             }
+            
+            
 
 
 
